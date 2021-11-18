@@ -1,5 +1,8 @@
 package utils;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import utils.driver.Driver;
 
 import java.io.FileNotFoundException;
@@ -8,6 +11,23 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Utilities extends Driver {
+
+    public Utilities(){PageFactory.initElements(driver,this);}
+
+    public void clickElement(WebElement element){centerElement(element).click();}
+
+    public WebElement centerElement(WebElement element){
+        String script =
+                "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"
+                + "var elementTop = arguments[0].getBoundingClientRect().top;"
+                + "window.scrollBy(0, elementTop-(viewPortHeight/2));";
+
+        ((JavascriptExecutor) driver).executeScript(script, element);
+
+        return element;
+    }
+
+    public void fillInput(String input, WebElement inputElement){inputElement.sendKeys(input);}
 
     public void navigate(String url){driver.get(url);}
 

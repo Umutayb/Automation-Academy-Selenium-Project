@@ -9,15 +9,13 @@ import java.util.List;
 
 public class HomePage extends Utilities {
 
-    public HomePage(){PageFactory.initElements(driver,this);}
-
     @FindBy(css = "[class*='top-card']")
     public List<WebElement> homePageCards;
 
     public void clickHomePageCard(String cardName){
         for (WebElement card:homePageCards) {
             if (card.getText().equalsIgnoreCase(cardName)){
-                card.click();
+                clickElement(card);
                 return;
             }
         }
