@@ -3,6 +3,7 @@ package utils;
 import com.github.webdriverextensions.WebDriverExtensionFieldDecorator;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -20,9 +21,24 @@ public class Utilities extends Driver {
 
     public void clickElement(WebElement element){centerElement(element).click();}
 
+    public WebElement waitForElementVisibility(WebElement element, Long initialTime){
+        return null;
+    }
+
+    public WebElement hoverOver(WebElement element, Long initialTime){
+        if (System.currentTimeMillis()-initialTime > 10000)
+            return null;
+        centerElement(element);
+        Actions actions = new Actions(driver);
+        try{actions.moveToElement(element).build().perform();}
+        catch (StaleElementReferenceException ignored) {hoverOver(element,initialTime);}
+        return element;
+    }
+
     public WebElement loopNMatch(List<WebElement> elementList, String itemText){
         for (WebElement item:elementList) {
-            if (item.getText().contains(itemText))
+            System.out.println(item.getText());
+            if (item.getText().equalsIgnoreCase(itemText) || item.getText().contains(itemText))
                 return item;
         }
         Assert.fail("Item could not be located!");
@@ -51,7 +67,7 @@ public class Utilities extends Driver {
                 .release()
                 .build()
                 .perform();
-        waitFor(0.3);
+        waitFor(0.2);
     }
 
     public void dragAndDropByOffset(WebElement targetElement, Integer xOffset, Integer yOffset){
@@ -63,7 +79,7 @@ public class Utilities extends Driver {
                 .release()
                 .build()
                 .perform();
-        waitFor(0.3);
+        waitFor(0.2);
     }
 
     public void navigate(String url){driver.get(url);}

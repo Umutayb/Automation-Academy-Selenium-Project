@@ -15,5 +15,5 @@ public class FramesAlertsWindowsPage extends Utilities {
 
     @FindBy(css = "[id='showLargeModal']")
     public WebElement showLargeModalButton;
-    
+
 }
