@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import utils.driver.Driver;
 
@@ -28,6 +29,17 @@ public class Utilities extends Driver {
     }
 
     public void fillInput(String input, WebElement inputElement){inputElement.sendKeys(input);}
+
+    public void dragAndDropTo(WebElement targetElement, WebElement destinationElement){
+        Actions actions = new Actions(driver);
+        actions.moveToElement(targetElement)
+                .clickAndHold(targetElement)
+                .moveToElement(destinationElement)
+                .release()
+                .build()
+                .perform();
+        waitFor(0.3);
+    }
 
     public void navigate(String url){driver.get(url);}
 

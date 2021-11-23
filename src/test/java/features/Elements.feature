@@ -4,7 +4,7 @@ Feature: Elements Feature
     * Navigate to https://demoqa.com/
     * Click home page card named Elements
 
-  Scenario: Text Box
+  Scenario: Check Box
     * Click menu item called Check Box
     * Click toggle of the item called Home
     * Click toggle of the item called Home
