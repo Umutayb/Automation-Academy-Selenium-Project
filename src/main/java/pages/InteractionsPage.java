@@ -10,20 +10,22 @@ import java.util.List;
 public class InteractionsPage extends Utilities {
 
     @FindBy(css = "[id='demo-tabpane-list'] [class*='list-group-item']")
-    List<WebElement> listItems;
+    public List<WebElement> listItems;
 
-    public void dragTabItemTo(String targetItemText, String destinationItemText){
-        WebElement targetElement = getTabItem(targetItemText);
-        WebElement destinationElement = getTabItem(destinationItemText);
+    @FindBy(css = "[id='demo-tabpane-grid'] [class*='list-group-item']")
+    public List<WebElement> gridItems;
+
+    @FindBy(css = "a[id*='demo-tab']")
+    public List<WebElement> tabs;
+
+    @FindBy(css = "[id='resizableBoxWithRestriction'] [class*='react-resizable-handle']")
+    public WebElement resizableBoxHandle;
+
+    public void resizeBox(Integer xOffset, Integer yOffset){dragAndDropByOffset(resizableBoxHandle,xOffset,yOffset);}
+
+    public void dragTabItemTo(List<WebElement> elementList,String targetItemText, String destinationItemText){
+        WebElement targetElement = loopNMatch(elementList,targetItemText);
+        WebElement destinationElement = loopNMatch(elementList,destinationItemText);
         dragAndDropTo(targetElement,destinationElement);
-    }
-
-    public WebElement getTabItem(String itemText){
-        for (WebElement listItem:listItems) {
-            if (listItem.getText().contains(itemText))
-                return listItem;
-        }
-        Assert.fail("No tab item with text "+itemText+" could be located on the InteractionsPage @getTabItem");
-        return null;
     }
 }

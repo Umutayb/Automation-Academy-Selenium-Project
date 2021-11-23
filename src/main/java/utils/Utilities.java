@@ -1,5 +1,6 @@
 package utils;
 
+import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,6 +10,7 @@ import utils.driver.Driver;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 public class Utilities extends Driver {
@@ -16,6 +18,15 @@ public class Utilities extends Driver {
     public Utilities(){PageFactory.initElements(driver,this);}
 
     public void clickElement(WebElement element){centerElement(element).click();}
+
+    public WebElement loopNMatch(List<WebElement> elementList, String itemText){
+        for (WebElement item:elementList) {
+            if (item.getText().contains(itemText))
+                return item;
+        }
+        Assert.fail("Item could not be located!");
+        return null;
+    }
 
     public WebElement centerElement(WebElement element){
         String script =
@@ -31,10 +42,23 @@ public class Utilities extends Driver {
     public void fillInput(String input, WebElement inputElement){inputElement.sendKeys(input);}
 
     public void dragAndDropTo(WebElement targetElement, WebElement destinationElement){
+        centerElement(targetElement);
         Actions actions = new Actions(driver);
         actions.moveToElement(targetElement)
                 .clickAndHold(targetElement)
                 .moveToElement(destinationElement)
+                .release()
+                .build()
+                .perform();
+        waitFor(0.3);
+    }
+
+    public void dragAndDropByOffset(WebElement targetElement, Integer xOffset, Integer yOffset){
+        centerElement(targetElement);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(targetElement)
+                .clickAndHold(targetElement)
+                .moveToElement(targetElement,xOffset,yOffset)
                 .release()
                 .build()
                 .perform();
