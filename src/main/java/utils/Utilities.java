@@ -1,5 +1,6 @@
 package utils;
 
+import com.github.webdriverextensions.WebDriverExtensionFieldDecorator;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -15,7 +16,7 @@ import java.util.Properties;
 
 public class Utilities extends Driver {
 
-    public Utilities(){PageFactory.initElements(driver,this);}
+    public Utilities(){PageFactory.initElements(new WebDriverExtensionFieldDecorator(driver),this);}
 
     public void clickElement(WebElement element){centerElement(element).click();}
 

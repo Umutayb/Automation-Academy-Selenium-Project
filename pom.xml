@@ -59,7 +59,12 @@
       <scope>compile</scope>
     </dependency>
 
-
+    <!-- Web Driver Extensions -->
+    <dependency>
+      <groupId>com.github.webdriverextensions</groupId>
+      <artifactId>webdriverextensions</artifactId>
+      <version>3.11.2</version>
+    </dependency>
   </dependencies>
 
   <build>
