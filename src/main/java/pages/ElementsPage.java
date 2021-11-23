@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.Utilities;
 import java.util.List;
-import java.util.Scanner;
 
 public class ElementsPage extends Utilities {
 
@@ -38,15 +37,14 @@ public class ElementsPage extends Utilities {
 
     public void resultVerification(String expectedResult){
         String[] expectedResults = expectedResult.split(" ");
-        Scanner scanner = new Scanner(expectedResult);
         int verificationCount = 0;
-        while (scanner.hasNextLine()){
-            for (String expected:expectedResults) {
-                if (result.getText().contains(expected))
+        for (String expected:expectedResults) {
+            for (String actual:result.getText().split(" ")) {
+                if (actual.contains(expected))
                     verificationCount++;
             }
-            Assert.assertEquals(expectedResults.length,verificationCount);
         }
+        Assert.assertEquals(expectedResults.length,verificationCount);
     }
 
     public void checkCheckBox(String itemName){

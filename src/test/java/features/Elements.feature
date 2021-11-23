@@ -11,8 +11,7 @@ Feature: Elements Feature
     * Click toggle of the item called Home
     * Click toggle of the item called Downloads
     * Check checkbox of the item called Downloads
-    * The result is downloads wordFile excelFile
-    * Wait for 5
+    * The result contains downloads wordFile excelFile
 
   Scenario: Text Box
     * Click menu item called Text Box
@@ -21,4 +20,3 @@ Feature: Elements Feature
     * Enter home to the current address filed
     * Enter getirHQ to the permanent address filed
     * Click text box submit button
-    * Wait for 5

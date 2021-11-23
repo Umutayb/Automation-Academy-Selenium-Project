@@ -10,4 +10,3 @@ Feature: Alerts, Frame & Windows Feature
       * Print small modal content
       * Verify presence of the cross button
       * Close small modal
-      * Wait for 5

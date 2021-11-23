@@ -19,7 +19,7 @@ public class ElementsPageSteps {
     @Given("Print result text")
     public void printResult(){elementsPage.printResultText();}
 
-    @Given("The result is {}")
+    @Given("The result contains {}")
     public void verifyResult(String expectedResult){elementsPage.resultVerification(expectedResult);}
 
     @Given("Enter {} to the username filed")
