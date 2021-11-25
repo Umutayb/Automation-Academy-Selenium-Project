@@ -11,3 +11,11 @@ Feature: Widgets Feature
     * Hover over navigation tab Sub Item
     * Hover over navigation tab SUB SUB LIST »
     * Hover over navigation tab Sub Sub Item 2
+
+    Scenario: Dropdown Interaction
+      * Click menu item called Select Menu
+      * Expand value dropdown
+      * Click value dropdown item named A root option
+      * Expand value dropdown
+      * Click value dropdown item named Group 2, option 1
+      * Wait for 3

@@ -39,7 +39,7 @@ public class ElementsPage extends Utilities {
         String[] expectedResults = expectedResult.split(" ");
         int verificationCount = 0;
         for (String expected:expectedResults) {
-            for (String actual:result.getText().split(" ")) {
+            for (String actual:result.getText().replace("You have selected :","").split(" ")) {
                 if (actual.contains(expected))
                     verificationCount++;
             }

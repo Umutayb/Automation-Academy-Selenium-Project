@@ -24,8 +24,8 @@ public class InteractionsPage extends Utilities {
     public void resizeBox(Integer xOffset, Integer yOffset){dragAndDropByOffset(resizableBoxHandle,xOffset,yOffset);}
 
     public void dragTabItemTo(List<WebElement> elementList,String targetItemText, String destinationItemText){
-        WebElement targetElement = loopNMatch(elementList,targetItemText);
-        WebElement destinationElement = loopNMatch(elementList,destinationItemText);
+        WebElement targetElement = loopNMatch(elementList,targetItemText, false);
+        WebElement destinationElement = loopNMatch(elementList,destinationItemText, false);
         dragAndDropTo(targetElement,destinationElement);
     }
 }

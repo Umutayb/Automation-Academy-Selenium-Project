@@ -18,7 +18,7 @@ public class InteractionsPageSteps {
 
     @Given("Click sortable tab option {}")
     public void clickTabOption(String tabName){
-        interactionsPage.clickElement(interactionsPage.loopNMatch(interactionsPage.tabs,tabName));
+        interactionsPage.clickElement(interactionsPage.loopNMatch(interactionsPage.tabs,tabName, false));
     }
 
     @Given("Resize the restricted bow by x: {} & y: {}")
